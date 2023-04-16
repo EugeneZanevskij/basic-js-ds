@@ -22,10 +22,60 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+class ListNode {
+  constructor(x) {
+    this.value = x;
+    this.next = null;
+  }
 }
+
+function removeKFromList(l, k) {
+  const storage = new ListNode(null);
+  storage.next = l;
+  let prev = storage;
+  let curr = l;
+  while (curr) {
+    if (curr.value === k) {
+      prev.next = curr.next;
+      curr = curr.next;
+    } else {
+      prev = curr;
+      curr = curr.next;
+    }
+  }
+  return storage.next;
+}
+
+// class ListNode {
+//   constructor(x) {
+//     this.value = x;
+//     this.next = null;
+//   }
+// }
+
+// function removeKFromList(l, k) {
+//   // Create a storage node as the new head of the linked list
+//   const storage = new ListNode(null);
+//   storage.next = l;
+//   let prev = storage;
+//   let curr = l;
+
+//   // Iterate through the linked list and remove nodes with value equal to k
+//   while (curr) {
+//     if (curr.value === k) {
+//       prev.next = curr.next;
+//       curr = curr.next;
+//     } else {
+//       prev = curr;
+//       curr = curr.next;
+//     }
+//   }
+
+//   // Return the head of the modified linked list (excluding nodes with value k)
+//   return storage.next;
+// }
+
 
 module.exports = {
   removeKFromList
